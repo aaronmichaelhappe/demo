@@ -25,7 +25,9 @@ export const useFlyersStore = defineStore("flyers", () => {
   ];
   const flyers = ref(null);
 
-  const flyersLength = computed(() => flyers.value.length);
+  const flyersLength = computed(() =>
+    flyers.value !== null ? flyers.value.length : 0
+  );
 
   function addFlyer(name) {
     flyers.value = [
