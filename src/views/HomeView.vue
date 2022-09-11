@@ -1,18 +1,19 @@
 <template>
-  <div class="home">
+  <div class="home-view container mx-auto m-2 p-2">
     <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <h1>BooksNThings</h1>
+    // books from pinia
+    {{ name }}
+
+    {{ flyersLength }}
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+<script setup>
+import { storeToRefs } from "pinia";
+import { useFlyersStore } from "@/stores/flyers";
 
-export default {
-  name: "HomeView",
-  components: {
-    HelloWorld,
-  },
-};
+const store = useFlyersStore();
+const { flyersLength, name } = storeToRefs(store);
+console.log(flyersLength);
 </script>
