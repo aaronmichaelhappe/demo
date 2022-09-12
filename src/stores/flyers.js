@@ -30,11 +30,17 @@ export const useFlyersStore = defineStore("flyers", () => {
   );
 
   function addFlyer(name) {
+    const newFlyer = {
+      id: flyersLength.value + 1,
+      name: name,
+      user_id: userTEMP_EXAMPLE.id,
+    };
     flyers.value = [
       ...flyers.value,
       { id: flyersLength.value + 1, name: name, user_id: userTEMP_EXAMPLE.id },
     ];
     dbFlyersTEMP_EXAMPLE = flyers.value;
+    return newFlyer;
   }
   function fetchAllFlyers() {
     dbFlyersTEMP_EXAMPLE;
