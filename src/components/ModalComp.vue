@@ -1,21 +1,19 @@
 <template>
-  <div
-    class="modal-comp fixed flex justify-center w-full h-[100vh] mx-auto bg-gray-500/50"
-  >
+  <div class="modal-comp fixed top-0 right-0 bottom-0 left-0 bg-gray-500/50">
     <div
-      class="relative w-1/2 h-[50vh] mt-[20vh] p-4 bg-white border-4 border-gray-100 shadow"
+      class="relative top-[25%] left-[25%] w-1/2 p-4 bg-white border-4 border-gray-100 shadow"
     >
       <button
         v-if="props.showCloseX"
         @click="emit('closeModal')"
-        class="absolute top-1 left-1 flex justify-center items-center w-8 h-8 p-2 m-2 text-green-500 font-bold bg-gray-100 rounded-full"
+        class="absolute top-1 left-1 w-8 h-8 p-2 m-2 text-green-500 font-bold bg-gray-100 rounded-full"
       >
         X
       </button>
-      <div class="mx-auto w-3/4">
+      <div class="mx-auto pt-6 px-6 pb-2">
         <slot></slot>
         <button
-          class="button-main my-4 mr-4 px-4 py-2 bg-green-400 text-white font-bold rounded-full"
+          class="button-main mr-4 px-4 py-2 bg-green-400 text-white font-bold rounded-full"
           @click="
             () => {
               // TODO

@@ -2,30 +2,19 @@
   <div class="flyers-view container mx-auto m-2 p-2">
     <Teleport to="#pre-header-hook">
       <ModalComp
-        v-if="createFlyerModalIsVisible"
-        @closeModal="createFlyerModalIsVisible = false"
-        @okModal="
-          () => {
-            // TODO instead of adding flyer here maybe add it in next page after sending param? so I can work with the returned object from addFlyer
-            addFlyer(newFlyerName);
-            createFlyerModalIsVisible = false;
-            // TODO useRouter perhaps instead
-            this.$router.push({
-              path: '/flyer-maker',
-              params: { name: newFlyerName },
-            });
-          }
-        "
-        @cancelModal="createFlyerModalIsVisible = false"
+        v-if="modalIsVisible"
+        @closeModal="modalIsVisible = false"
+        @okModal="() => handleOKClicked()"
+        @cancelModal="modalIsVisible = false"
         :okTextValue="'Add Flyer yo yo'"
       >
-        <div class="w-full mt-12">
-          <label for="flyer-name" class="w-1/2"></label>
+        <div class="w-full">
+          <label for="flyer-name">Flyer Name</label>
           <input
             v-model="newFlyerName"
             name="flyer-name"
-            placeholder="flyer name"
-            class="my-2 p-2 w-3/4 bg-white border-2 border-gray-200"
+            placeholder="Cool Name"
+            class="my-2 p-2 w-full bg-white border-2 border-gray-200"
           />
         </div>
       </ModalComp>
@@ -54,7 +43,7 @@
     </div>
     <button
       class="button-main my-4 mr-4 px-4 py-2 bg-green-400 text-white font-bold rounded-full"
-      @click="createFlyerModalIsVisible = true"
+      @click="modalIsVisible = true"
     >
       Create Flyer +
     </button>
@@ -68,27 +57,40 @@
     >
       All Flyers
     </button>
-
-    <!-- will be in modal -->
   </div>
 </template>
 
 <script setup>
-import { storeToRefs } from "pinia";
 import { onMounted, ref } from "vue";
-import { useFlyersStore } from "@/stores/flyers";
+import { useRouter } from "vue-router";
+import { storeToRefs } from "pinia";
 import ModalComp from "@/components/ModalComp.vue";
+import { useFlyersStore } from "@/stores/flyers";
 
 const store = useFlyersStore();
 const { flyers } = storeToRefs(store);
-let slicedFlyers = ref(null);
 const { fetchAllFlyers, addFlyer } = store;
 
+const router = useRouter();
+
+let slicedFlyers = ref(null);
 let newFlyerName = ref("");
-let createFlyerModalIsVisible = ref(false);
+let modalIsVisible = ref(false);
 
 onMounted(() => {
   fetchAllFlyers();
+  // TODO: not sure about this. Only on mount?
   slicedFlyers.value = flyers.value.slice(0, 4);
 });
+
+function handleOKClicked() {
+  // TODO instead of adding flyer here maybe add it in next page after sending param? so I can work with the returned object from addFlyer
+  addFlyer(newFlyerName);
+  modalIsVisible = false;
+  // TODO am I doing this right? I don't see params in the next route
+  router.push({
+    path: "/flyer-maker",
+    params: { name: newFlyerName },
+  });
+}
 </script>
