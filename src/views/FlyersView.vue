@@ -1,12 +1,12 @@
 <template>
-  <div class="flyers-view container mx-auto m-2 p-2">
+  <div class="flyers-view container m-2 p-2 space-y-2">
     <Teleport to="#pre-header-hook">
       <ModalComp
         v-if="modalIsVisible"
         @closeModal="modalIsVisible = false"
         @okModal="() => handleOKClicked()"
         @cancelModal="modalIsVisible = false"
-        :okTextValue="'Add Flyer yo yo'"
+        :okTextValue="'Add Flyer'"
       >
         <div class="w-full">
           <label for="flyer-name">Flyer Name</label>
@@ -19,44 +19,36 @@
         </div>
       </ModalComp>
     </Teleport>
-    <div>
-      <h1
-        class="leading-[200%] text-8xl text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-600 font-extrabold"
-      >
-        Flyer Designer
-      </h1>
-    </div>
-    <div>
-      <h3>Recent Flyers</h3>
-
-      <ul class="flex no-wrap bg-gray-100 p-8">
-        <li
-          v-for="flyer in slicedFlyers"
-          :key="flyer.id"
-          class="w-[20%] mr-4 p-4 bg-white text-xs"
+    <div class="grid grid-cols-[1fr,3fr] gap-4 h-[90vh]">
+      <div class="flex flex-col gap-y-4 pt-6">
+        <AmhButton :type="'outline'" class="w-[10rem]">Search</AmhButton>
+        <AmhButton @click="modalIsVisible = true" class="w-[10rem]"
+          >Create Flyer +</AmhButton
         >
-          {{ flyer.name }}
-        </li>
-      </ul>
+      </div>
+      <div class="pl-4 border-l-2 border-gray-100">
+        <h1
+          class="mb-6 leading-[120%] text-8xl text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-400 font-extrabold"
+        >
+          Flyer Designer
+        </h1>
+        <div>
+          <h3>Recent Flyers</h3>
 
-      <div></div>
+          <ul class="flex no-wrap bg-gray-100 p-6 space-x-6">
+            <li
+              v-for="flyer in slicedFlyers"
+              :key="flyer.id"
+              class="w-[20%] p-4 bg-white text-xs"
+            >
+              {{ flyer.name }}
+            </li>
+          </ul>
+
+          <div></div>
+        </div>
+      </div>
     </div>
-    <button
-      class="button-main my-4 mr-4 px-4 py-2 bg-green-400 text-white font-bold rounded-full"
-      @click="modalIsVisible = true"
-    >
-      Create Flyer +
-    </button>
-    <button
-      class="button-main my-4 mr-4 px-4 py-2 bg-green-400 text-white font-bold rounded-full"
-    >
-      All My Flyers
-    </button>
-    <button
-      class="button-main my-4 mr-4 px-4 py-2 bg-green-400 text-white font-bold rounded-full"
-    >
-      All Flyers
-    </button>
   </div>
 </template>
 
@@ -66,6 +58,7 @@ import { useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
 import ModalComp from "@/components/ModalComp.vue";
 import { useFlyersStore } from "@/stores/flyers";
+import AmhButton from "@/elements/AmhButton.vue";
 
 const store = useFlyersStore();
 const { flyers } = storeToRefs(store);

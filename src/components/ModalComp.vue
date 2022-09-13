@@ -6,34 +6,38 @@
       <button
         v-if="props.showCloseX"
         @click="emit('closeModal')"
-        class="absolute top-1 left-1 w-8 h-8 p-2 m-2 text-green-500 font-bold bg-gray-100 rounded-full"
+        class="absolute top-[-1rem] left-[-1.5rem] w-4 h-4 font-bold rounded-full"
       >
-        X
+        <ion-icon
+          name="close-circle"
+          class="absolute top-0 text-green-500 text-4xl"
+        ></ion-icon>
       </button>
-      <div class="mx-auto pt-6 px-6 pb-2">
+      <div>
         <slot></slot>
-        <button
-          class="button-main mr-4 px-4 py-2 bg-green-400 text-white font-bold rounded-full"
-          @click="
-            () => {
-              // TODO
-              // reserach emit again the erros I am geting
-              emit('okModal');
-            }
-          "
-        >
-          {{ props.okTextValue }}
-        </button>
-        <button
-          class="button-main my-4 mr-4 px-4 py-2 bg-green-400 text-white font-bold rounded-full"
-          @click="
-            () => {
-              emit('okModal');
-            }
-          "
-        >
-          {{ props.cancelTextValue }}
-        </button>
+        <div class="flex space-x-2 pt-2">
+          <AmhButton
+            @click="
+              () => {
+                // TODO
+                // reserach emit again the erros I am geting
+                emit('okModal');
+              }
+            "
+          >
+            {{ props.okTextValue
+            }}<ion-icon name="add-outline" class="ml-2 text-xl"></ion-icon>
+          </AmhButton>
+          <AmhButton
+            @click="
+              () => {
+                emit('cancelModal');
+              }
+            "
+          >
+            {{ props.cancelTextValue }}
+          </AmhButton>
+        </div>
       </div>
     </div>
   </div>
@@ -41,6 +45,7 @@
 
 <script setup>
 import { defineProps, defineEmits } from "vue";
+import AmhButton from "@/elements/AmhButton.vue";
 const emit = defineEmits(["closeModal, okModal"]);
 const props = defineProps({
   showCloseX: {
