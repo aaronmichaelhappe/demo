@@ -1,5 +1,5 @@
 <template>
-  <div class="home-view container mx-auto m-2 p-2 space-y-4">
+  <div class="home-view container m-2 mx-auto space-y-4 p-2">
     <div>
       <div>
         <img alt="Vue logo" src="../assets/logo.png" />

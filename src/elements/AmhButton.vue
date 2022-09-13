@@ -1,6 +1,6 @@
 <template>
   <button
-    class="flex justify-center items-center px-4 py-2 self-center border-green-400 text-white font-bold rounded-full"
+    class="flex items-center justify-center self-center rounded-full border-green-400 px-4 py-2 font-bold text-white"
     :class="altStyles"
   >
     <slot></slot>

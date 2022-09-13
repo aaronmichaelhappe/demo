@@ -1,5 +1,5 @@
 <template>
-  <div class="flyers-view container m-2 p-2 space-y-2">
+  <div class="flyers-view container m-2 space-y-2 p-2">
     <Teleport to="#pre-header-hook">
       <ModalComp
         v-if="modalIsVisible"
@@ -14,32 +14,33 @@
             v-model="newFlyerName"
             name="flyer-name"
             placeholder="Cool Name"
-            class="my-2 p-2 w-full bg-white border-2 border-gray-200"
+            class="my-2 w-full border-2 border-gray-200 bg-white p-2"
           />
         </div>
       </ModalComp>
     </Teleport>
-    <div class="grid grid-cols-[1fr,3fr] gap-4 h-[90vh]">
+    <div class="grid h-[90vh] grid-cols-[1fr,3fr] gap-4">
       <div class="flex flex-col gap-y-4 pt-6">
         <AmhButton :type="'outline'" class="w-[10rem]">Search</AmhButton>
         <AmhButton @click="modalIsVisible = true" class="w-[10rem]"
           >Create Flyer +</AmhButton
         >
       </div>
-      <div class="pl-4 border-l-2 border-gray-100">
+      <div class="border-l-2 border-gray-100 pl-4">
+        // TODO eventually move to its own element
         <h1
-          class="mb-6 leading-[120%] text-8xl text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-400 font-extrabold"
+          class="mb-6 bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-8xl font-extrabold leading-[120%] text-transparent"
         >
           Flyer Designer
         </h1>
         <div>
           <h3>Recent Flyers</h3>
 
-          <ul class="flex no-wrap bg-gray-100 p-6 space-x-6">
+          <ul class="no-wrap flex space-x-6 bg-gray-100 p-6">
             <li
               v-for="flyer in slicedFlyers"
               :key="flyer.id"
-              class="w-[20%] p-4 bg-white text-xs"
+              class="w-[20%] bg-white p-4 text-xs"
             >
               {{ flyer.name }}
             </li>
