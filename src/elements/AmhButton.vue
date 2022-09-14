@@ -8,6 +8,7 @@
 </template>
 <script setup>
 import { defineProps, ref } from "vue";
+
 const props = defineProps({
   type: {
     type: String,
@@ -17,9 +18,6 @@ const props = defineProps({
 });
 
 let altStyles = ref("bg-green-400");
-console.log(altStyles);
-
-// let type = props.type;
 
 const styleLookup = {
   outline: "text-green-400 border-2 border-green-400 ",

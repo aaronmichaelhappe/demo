@@ -16,11 +16,17 @@
     </div>
 
     <div>
-      <h4>Hi Aaron!</h4>
+      <h4>Hi {{ name }}</h4>
       <p>Books Projects Assigned<span>14</span></p>
       <p></p>
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { storeToRefs } from "pinia";
+import { useUserStore } from "@/stores/user.js";
+const store = useUserStore();
+
+const { name } = storeToRefs(store);
+</script>

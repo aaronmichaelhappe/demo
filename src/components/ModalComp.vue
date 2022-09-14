@@ -19,8 +19,6 @@
           <AmhButton
             @click="
               () => {
-                // TODO
-                // reserach emit again the erros I am geting
                 emit('okModal');
               }
             "
@@ -46,7 +44,7 @@
 <script setup>
 import { defineProps, defineEmits } from "vue";
 import AmhButton from "@/elements/AmhButton.vue";
-const emit = defineEmits(["closeModal, okModal"]);
+
 const props = defineProps({
   showCloseX: {
     type: Boolean,
@@ -64,4 +62,6 @@ const props = defineProps({
     default: "Cancel",
   },
 });
+
+const emit = defineEmits(["closeModal, okModal"]);
 </script>
