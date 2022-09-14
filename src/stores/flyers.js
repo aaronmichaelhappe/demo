@@ -1,35 +1,22 @@
-import { defineStore } from "pinia";
 import { computed, ref } from "vue";
+import { defineStore } from "pinia";
+import { myFetch } from "@/utils/store-helper.js";
+
 export const useFlyersStore = defineStore("flyers", () => {
-  // pretend DB
+  // TODO move this to pretend DB
   const userTEMP_EXAMPLE = {
     name: "Aaron Happe",
     id: 3,
   };
-  let dbFlyersTEMP_EXAMPLE = [
-    {
-      id: 1,
-      name: "Flying Food",
-      user_id: 1,
-    },
-    {
-      id: 2,
-      name: "F The System",
-      user_id: 1,
-    },
-    {
-      id: 3,
-      name: "We Tried to Warn You. - How Donald Trump turned 1/3 of America into a fascist cult of conspiracy theorists",
-      user_id: 1,
-    },
-  ];
-  const flyers = ref(null);
+
+  const flyers = ref(myFetch("flyers"));
 
   const flyersLength = computed(() =>
     flyers.value !== null ? flyers.value.length : 0
   );
 
   function addFlyer(name) {
+    // TODO check this is the F type i wana use.
     const newFlyer = {
       id: flyersLength.value + 1,
       name: name,
@@ -39,17 +26,17 @@ export const useFlyersStore = defineStore("flyers", () => {
       ...flyers.value,
       { id: flyersLength.value + 1, name: name, user_id: userTEMP_EXAMPLE.id },
     ];
-    dbFlyersTEMP_EXAMPLE = flyers.value;
+
     return newFlyer;
   }
-  function fetchAllFlyers() {
-    dbFlyersTEMP_EXAMPLE;
-    flyers.value = dbFlyersTEMP_EXAMPLE;
+
+  function sliceFlyers(index) {
+    return flyers.value.slice(0, index);
   }
 
   return {
     addFlyer,
-    fetchAllFlyers,
+    sliceFlyers,
     flyers,
     flyersLength,
   };

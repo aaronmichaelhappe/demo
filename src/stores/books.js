@@ -1,5 +1,6 @@
-import { defineStore } from "pinia";
 import { computed, ref } from "vue";
+import { defineStore } from "pinia";
+
 export const useBooksStore = defineStore("books", () => {
   const count = ref(0);
   const name = ref("Eduardo");
