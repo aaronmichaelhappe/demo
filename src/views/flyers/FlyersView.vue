@@ -2,7 +2,7 @@
   <!-- <div class="flyers-view container m-2 space-y-2 p-2"> -->
   <div class="flyers-view container">
     <Teleport to="#pre-header-hook">
-      <ModalComp
+      <ModalComponent
         v-if="modalIsVisible"
         @closeModal="modalIsVisible = false"
         @okModal="() => handleOKClicked()"
@@ -18,7 +18,7 @@
             class="my-2 w-full border-2 border-gray-200 bg-white p-2"
           />
         </div>
-      </ModalComp>
+      </ModalComponent>
     </Teleport>
     <!-- // two layouts? -->
     <div class="grid h-[90vh] grid-cols-[1fr,1fr,3fr]">
@@ -43,10 +43,10 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 // import { useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
-import ModalComp from "@/components/ModalComp.vue";
+import ModalComponent from "@/components/ModalComponent.vue";
 import AmhButton from "@/elements/AmhButton.vue";
 import { useFlyersStore } from "@/stores/flyers";
 import FlyersMainPart from "../flyers/partials/FlyersMainPart.vue";
@@ -54,13 +54,18 @@ import FlyersSearchListPart from "../flyers/partials/FlyersSearchListPart.vue";
 
 const store = useFlyersStore();
 const { flyers } = storeToRefs(store);
-const { addFlyer } = store;
+const { addFlyer, fetchFlyers } = store;
 console.log(flyers);
 
 // const router = useRouter();
 
 let newFlyerName = ref("");
 let modalIsVisible = ref(false);
+
+onMounted(() => {
+  // may have made a bug here
+  flyers.value = fetchFlyers();
+});
 
 function handleOKClicked() {
   // TODO instead of adding flyer here maybe add it in next page after sending param? so I can work with the returned object from addFlyer
