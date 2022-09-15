@@ -1,3 +1,5 @@
+import booksData from "./books";
+
 export const flyers = [
   {
     id: 1,
@@ -25,3 +27,5 @@ export const user = {
   state: "OR",
   postal_code: "97214",
 };
+
+export const books = booksData;
