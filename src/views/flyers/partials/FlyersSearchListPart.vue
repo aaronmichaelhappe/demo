@@ -1,7 +1,6 @@
 <template>
   <div class="flyers-search-list-part">
     <h3>Recent Flyers</h3>
-
     <ul class="no-wrap flex flex-col gap-y-4 pt-2">
       <li
         v-for="flyer in flyers"
@@ -15,12 +14,13 @@
 </template>
 
 <script setup>
-import { useFlyersStore } from "@/stores/flyers";
+import { defineProps } from "vue";
 
-const RECENT_FLYERS_LENGTH = 3;
-
-const store = useFlyersStore();
-const { sliceFlyers } = store;
-
-const flyers = sliceFlyers(RECENT_FLYERS_LENGTH);
+// eslint-disable-next-line no-unused-vars
+const props = defineProps({
+  flyers: {
+    type: Array,
+    required: true,
+  },
+});
 </script>

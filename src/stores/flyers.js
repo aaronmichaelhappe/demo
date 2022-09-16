@@ -1,6 +1,6 @@
 import { computed, ref } from "vue";
 import { defineStore } from "pinia";
-import { myFetch } from "@/utils/store-helpers.js";
+import { myFetch } from "@/utils/store-helpers";
 
 export const useFlyersStore = defineStore("flyers", () => {
   // TODO move this to pretend DB
@@ -9,16 +9,14 @@ export const useFlyersStore = defineStore("flyers", () => {
     id: 3,
   };
 
-  const flyers = ref(null);
+  const flyers = ref([]);
 
-  const flyersLength = computed(() =>
-    flyers.value !== null ? flyers.value.length : 0
-  );
+  const flyersLength = computed(() => flyers.value.length);
   function fetchFlyers() {
-    flyers.value = myFetch("flyers");
+    return (flyers.value = myFetch("flyers"));
   }
-  function addFlyer(name) {
-    // TODO check this is the F type i wana use.
+  function createFlyer(name) {
+    // TODO check this return from data file.
     const newFlyer = {
       id: flyersLength.value + 1,
       name: name,
@@ -32,14 +30,9 @@ export const useFlyersStore = defineStore("flyers", () => {
     return newFlyer;
   }
 
-  function sliceFlyers(index) {
-    return flyers.value.slice(0, index);
-  }
-
   return {
-    addFlyer,
+    createFlyer,
     fetchFlyers,
-    sliceFlyers,
     flyers,
     flyersLength,
   };
