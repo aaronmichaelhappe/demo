@@ -18,6 +18,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.16",
     "@babel/eslint-parser": "^7.12.16",
+    "@faker-js/faker": "^7.5.0",
     "@tailwindcss/postcss7-compat": "^2.2.17",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-e2e-cypress": "~5.0.0",
