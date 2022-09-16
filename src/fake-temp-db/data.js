@@ -1,4 +1,4 @@
-import booksData from "./books";
+// import booksData from "./books";
 
 export const flyers = [
   {
@@ -27,5 +27,3 @@ export const user = {
   state: "OR",
   postal_code: "97214",
 };
-
-export const books = booksData;

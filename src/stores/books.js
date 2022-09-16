@@ -1,13 +1,19 @@
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import { defineStore } from "pinia";
+import { myFetch } from "@/utils/store-helpers";
+import bookFakeData, { createBookFakeData } from "../fake-temp-db/books";
 
-export const useBooksStore = defineStore("books", () => {
-  const count = ref(0);
-  const name = ref("Eduardo");
-  const doubleCount = computed(() => count.value * 2);
-  function increment() {
-    count.value++;
+export const useBooksStore = defineStore("flyers", () => {
+  function fetchBooks() {
+    return (books.value = myFetch("flyers"));
   }
 
-  return { count, name, doubleCount, increment };
+  const books = ref(bookFakeData);
+  const createBook = createBookFakeData;
+
+  return {
+    createBook,
+    fetchBooks,
+    books,
+  };
 });
