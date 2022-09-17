@@ -43,7 +43,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 import ModalComponent from "@/components/ModalComponent.vue";
 import AmhButton from "@/elements/AmhButton.vue";
@@ -52,16 +52,11 @@ import FlyersMainPart from "../flyers/partials/FlyersMainPart.vue";
 import FlyersSearchListPart from "../flyers/partials/FlyersSearchListPart.vue";
 
 const store = useFlyersStore();
-const flyers = ref([]);
-
 const router = useRouter();
+const flyers = ref(store.fetchFlyers());
 
 let newFlyerName = ref("");
 let modalIsVisible = ref(false);
-
-onMounted(() => {
-  flyers.value = store.fetchFlyers();
-});
 
 function handleOKClicked() {
   store.createFlyer(newFlyerName);
