@@ -7,7 +7,7 @@
         :key="flyer.id"
         class="h-[14rem] bg-white p-2 text-xs"
       >
-        {{ flyer.name }}
+        {{ flyer.title }}
       </li>
     </ul>
   </div>

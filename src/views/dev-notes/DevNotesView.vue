@@ -14,7 +14,9 @@
       <ul class="ml-2">
         <li>How to handle layout?</li>
         <ul class="ml-8 list-disc">
-          <li>Use repeated component when able.</li>
+          <li>
+            Use repeated component (element) when able for tailwind classes
+          </li>
           <li>look into how to create more complicated classes in tailwind</li>
           <li>
             think about adding web components to project. for repeated elements
@@ -24,6 +26,26 @@
             </ul>
           </li>
         </ul>
+      </ul>
+    </div>
+    <div>
+      <h3>Current plan of attack</h3>
+      <p>
+        1 -- https://blog.logrocket.com/complex-vue-3-state-management-pinia/
+      </p>
+      <p>2 -- make profile page</p>
+    </div>
+    <div>
+      <ul class="ml-2">
+        <li>make profile page</li>
+        <li>make create new books functionality</li>
+        <li>
+          decide what to show in hp (profile and last db creations idea rn)
+        </li>
+        <li>make infinite scrolling</li>
+        <li>really start thinking about applying testing from here on out</li>
+        <li>make authors (functionality and create new)</li>
+        <li>make flyers</li>
       </ul>
     </div>
   </div>

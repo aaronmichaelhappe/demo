@@ -12,9 +12,7 @@ import { onMounted } from "vue";
 import { useBooksStore } from "../../stores/books";
 
 onMounted(() => {
-  // may have made a bug here
-  console.log("asdf");
   const store = useBooksStore();
-  console.log(store.books);
+  console.log(store);
 });
 </script>

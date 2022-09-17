@@ -6,14 +6,22 @@
 </template>
 
 <script setup>
-import { onMounted } from "vue";
+import { defineProps, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { storeToRefs } from "pinia";
 import { useFlyersStore } from "@/stores/flyers";
 
+const props = defineProps({
+  name: {
+    type: String,
+    // required: true,
+  },
+});
+
+const route = useRoute();
+
 onMounted(() => {
-  const route = useRoute();
-  console.log(route);
+  console.log("props", props.name);
   route.params;
 });
 

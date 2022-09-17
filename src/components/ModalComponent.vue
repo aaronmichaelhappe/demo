@@ -63,5 +63,5 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["closeModal, okModal"]);
+const emit = defineEmits(["okModal", "closeModal"]);
 </script>
