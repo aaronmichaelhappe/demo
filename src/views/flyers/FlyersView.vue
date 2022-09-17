@@ -33,7 +33,7 @@
       <!-- // switch these out when flyer chosen -->
       <!-- // change layout when switched? -->
       <div class="bg-gray-100 p-4 pt-6">
-        <FlyersSearchListPart :flyers="flyers"></FlyersSearchListPart>
+        <FlyersSearchListPart :flyers="flyers.value"></FlyersSearchListPart>
       </div>
       <div class="p-4 pt-6">
         <FlyersMainPart></FlyersMainPart>
@@ -60,7 +60,8 @@ let newFlyerName = ref("");
 let modalIsVisible = ref(false);
 
 onMounted(() => {
-  // may have made a bug here
+  // move this to router
+  console.log(store);
   flyers.value = store.fetchFlyers();
 });
 

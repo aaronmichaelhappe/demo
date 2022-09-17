@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div class="about-view">
     <h1>
       This is an about page. And is where I will do my pseudo code and planning
     </h1>
