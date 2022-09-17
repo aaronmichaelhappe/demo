@@ -1,14 +1,12 @@
 import { faker } from "@faker-js/faker";
 
-const books = [];
+const flyers = [];
 
-export function createBookFakeData() {
+export function createFlyerFakeData() {
   return {
     id: faker.datatype.number(),
     title: faker.music.songName(),
-    subtilte: faker.music.songName(50),
-    author_id: faker.number,
-    published: faker.date.between(
+    created: faker.date.between(
       "2010-01-01T00:00:00.000Z",
       "2022-01-01T00:00:00.000Z"
     ),
@@ -16,7 +14,7 @@ export function createBookFakeData() {
 }
 
 Array.from({ length: 10 }).forEach(() => {
-  books.push(createBookFakeData());
+  flyers.push(createFlyerFakeData());
 });
 
-export default books;
+export default flyers;
