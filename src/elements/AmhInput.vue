@@ -1,17 +1,21 @@
 <template>
-  <label>{{ label }}</label>
-  <input
-    v-model="model"
-    type="text"
-    :placeholder="placeholder"
-    class="mr-2 border-2 border-gray-200 p-2"
-    :class="altStyles"
-  />
-  {{ model }}
+  <div>
+    <label>{{ label }}</label>
+    <input
+      v-model="model"
+      type="text"
+      :placeholder="placeholder"
+      class="mr-2 border-2 border-gray-200 p-2"
+      :class="altStyles"
+      @input="emit('amhInput', model)"
+    />
+  </div>
 </template>
-<script setup>
-import { defineProps, ref } from "vue";
 
+<script setup>
+import { defineEmits, defineProps, ref } from "vue";
+
+const emit = defineEmits(["amhInput"]);
 // eslint-disable-next-line no-unused-vars
 const props = defineProps({
   model: {
@@ -35,6 +39,7 @@ const props = defineProps({
 const model = ref(props.model);
 let altStyles = ref("");
 
+// TODO refactor to a map
 const styleLookup = {
   widthFull: "w-full",
   widthOneHalf: "w-1/2",

@@ -11,6 +11,7 @@ import { useRoute } from "vue-router";
 import { storeToRefs } from "pinia";
 import { useFlyersStore } from "@/stores/flyers";
 
+// eslint-disable-next-line no-unused-vars
 const props = defineProps({
   name: {
     type: String,
@@ -21,7 +22,6 @@ const props = defineProps({
 const route = useRoute();
 
 onMounted(() => {
-  console.log("props", props.name);
   route.params;
 });
 

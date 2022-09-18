@@ -9,6 +9,7 @@
           :label="'First Name'"
           :placeholder="'Enter your first name'"
           :styleOptions="['widthFull']"
+          @amh-input="(e) => onInput(e, 'firstName')"
         ></AmhInput>
       </div>
       <div>
@@ -42,39 +43,30 @@
           :values="[{ value: 'he' }, { value: 'she' }, { value: 'they' }]"
         ></AmhRadios>
       </div>
-      <!-- <div>
-        <label for="email">Email</label>
-        <input
-          v-model="store.firstName"
-          name="first-name"
-          type="text"
-          placeholder="Enter your name"
-        />
-        {{ store.firstName }}
-      </div>
 
-    -->
-      <!-- TODO should be input submit -->
-      <AmhButton>Submit</AmhButton>
+      <AmhButton @click="handleSubmit">Submit</AmhButton>
     </form>
   </div>
 </template>
 
 <script setup>
-import { useProfileStore } from "@/stores/profile";
-import { storeToRefs } from "pinia";
+import { useUserStore } from "@/stores/user";
 import AmhInput from "@/elements/AmhInput.vue";
 import AmhButton from "@/elements/AmhButton.vue";
 import AmhTextarea from "@/elements/AmhTextarea.vue";
 import AmhRadios from "@/elements/AmhRadios.vue";
-const store = useProfileStore();
-// eslint-disable-next-line no-unused-vars
-const { bio, email, firstName, lastName } = storeToRefs(useProfileStore());
 
-// const props = defineProps({
-//   firstName: {
-//     type: String,
-//     required: true,
-//   },
-// });
+// eslint-disable-next-line no-unused-vars
+const store = useUserStore();
+
+function onInput(value, from) {
+  const lookUp = new Map();
+  lookUp.set("firstName", () => (store.firstName = value));
+  lookUp.get(from)();
+}
+
+function handleSubmit() {
+  confirm("This is just stored in local storage rn, fyi");
+  localStorage.setItem("profileFirstName", "Tom");
+}
 </script>
