@@ -1,14 +1,17 @@
-import { computed, ref } from "vue";
+import { reactive } from "vue";
 import { defineStore } from "pinia";
 
 export const useProfileStore = defineStore("profile", () => {
-  const firstName = ref("");
-  const lastName = ref("");
-  const fullName = computed(() => `${firstName.value} ${lastName.value}`);
+  const user = reactive({
+    firstName: "",
+    lastName: "",
+    bio: "",
+    email: "",
+    gender: "",
+  });
+  // const fullName = computed(() => `${user.firstName} ${user.lastName}`);
 
   return {
-    firstName,
-    lastName,
-    fullName,
+    user,
   };
 });

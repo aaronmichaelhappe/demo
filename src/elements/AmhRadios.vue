@@ -1,14 +1,23 @@
 <template>
   <label>{{ label }}</label>
-  <input
-    v-model="model"
-    type="text"
-    :placeholder="placeholder"
-    class="mr-2 border-2 border-gray-200 p-2"
-    :class="altStyles"
-  />
-  {{ model }}
+  <div class="flex">
+    <span
+      v-for="(value, index) in values"
+      :key="index"
+      class="mr-2 inline-block"
+    >
+      <input
+        type="radio"
+        v-model="model"
+        :value="value.value"
+        :name="name"
+        class="mr-1"
+      />
+      <label>{{ value.label ? value.label : value.value }}</label>
+    </span>
+  </div>
 </template>
+
 <script setup>
 import { defineProps, ref } from "vue";
 
@@ -26,9 +35,14 @@ const props = defineProps({
     required: false,
     default: "",
   },
-  styleOptions: {
+  values: {
     type: Array,
+    required: true,
+  },
+  styleOptions: {
+    type: String,
     required: false,
+    default: "",
   },
 });
 

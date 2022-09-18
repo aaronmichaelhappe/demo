@@ -1,13 +1,13 @@
 <template>
   <label>{{ label }}</label>
-  <input
+  <textarea
     v-model="model"
     type="text"
     :placeholder="placeholder"
     class="mr-2 border-2 border-gray-200 p-2"
     :class="altStyles"
-  />
-  {{ model }}
+  >
+  </textarea>
 </template>
 <script setup>
 import { defineProps, ref } from "vue";
