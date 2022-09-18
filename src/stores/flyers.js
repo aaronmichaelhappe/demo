@@ -1,15 +1,15 @@
-import { computed, ref } from "vue";
+import { computed, reactive } from "vue";
 import { defineStore } from "pinia";
 import flyerFakeData, { createFlyerFakeData } from "../fake-temp-db/flyers";
 
 export const useFlyersStore = defineStore("flyers", () => {
-  const flyers = ref(flyerFakeData);
-  const flyersLength = computed(() => flyers.value.length);
+  const flyers = reactive(flyerFakeData);
+  const flyersLength = computed(() => flyers.length);
 
   const createFlyer = createFlyerFakeData;
 
   function fetchFlyers() {
-    return flyers.value;
+    return flyers;
   }
 
   return {
