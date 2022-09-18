@@ -14,7 +14,6 @@ export const useBooksStore = defineStore("books", () => {
   return {
     createBook,
     fetchBooks,
-    books,
     booksLength,
   };
 });

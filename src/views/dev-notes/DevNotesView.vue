@@ -30,10 +30,7 @@
     </div>
     <div>
       <h3>Current plan of attack</h3>
-      <p>
-        1 -- https://blog.logrocket.com/complex-vue-3-state-management-pinia/
-      </p>
-      <p>2 -- make profile page</p>
+      <p>1 -- make profile page</p>
     </div>
     <div>
       <ul class="ml-2">
