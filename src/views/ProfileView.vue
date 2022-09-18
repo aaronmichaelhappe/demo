@@ -70,7 +70,6 @@ import AmhRadios from "@/elements/AmhRadios.vue";
 const store = useProfileStore();
 // eslint-disable-next-line no-unused-vars
 const { bio, email, firstName, lastName } = storeToRefs(useProfileStore());
-console.log(store);
 
 // const props = defineProps({
 //   firstName: {

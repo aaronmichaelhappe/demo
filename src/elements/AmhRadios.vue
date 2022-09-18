@@ -23,40 +23,21 @@ import { defineProps, ref } from "vue";
 
 // eslint-disable-next-line no-unused-vars
 const props = defineProps({
+  label: {
+    type: String,
+  },
   model: {
     required: true,
   },
-  label: {
+  name: {
     type: String,
     required: true,
-  },
-  placeholder: {
-    type: String,
-    required: false,
-    default: "",
   },
   values: {
     type: Array,
     required: true,
   },
-  styleOptions: {
-    type: String,
-    required: false,
-    default: "",
-  },
 });
 
 const model = ref(props.model);
-let altStyles = ref("");
-
-const styleLookup = {
-  widthFull: "w-full",
-  widthOneHalf: "w-1/2",
-};
-
-if (props.styleOptions !== "") {
-  altStyles.value = props.styleOptions.map((o) =>
-    styleLookup[o] !== undefined ? styleLookup[o] : ""
-  );
-}
 </script>
