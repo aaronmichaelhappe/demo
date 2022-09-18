@@ -14,11 +14,11 @@
         Where our logo looks suspiciously like Vue.js
       </h3>
     </div>
-
     <div>
       <h4>Hi {{ name }}</h4>
       <p>Books Projects Assigned<span>14</span></p>
       <p></p>
+      <HelloWorld msg="YEAYYY"></HelloWorld>
     </div>
   </div>
 </template>
@@ -26,6 +26,7 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { useUserStore } from "@/stores/user.js";
+import HelloWorld from "@/components/HelloWorld.vue";
 const store = useUserStore();
 
 const { name } = storeToRefs(store);
