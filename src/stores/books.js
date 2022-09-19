@@ -1,10 +1,10 @@
-import { computed, reactive } from "vue";
+import { computed, ref } from "vue";
 import { defineStore } from "pinia";
 import bookFakeData, { createBookFakeData } from "../fake-temp-db/books";
 
 export const useBooksStore = defineStore("books", () => {
-  const books = reactive(bookFakeData);
-  const booksLength = computed(() => books.length);
+  const books = ref(bookFakeData);
+  const booksLength = computed(() => books.value.length);
 
   const createBook = createBookFakeData;
   function fetchBooks() {

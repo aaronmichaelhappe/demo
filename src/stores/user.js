@@ -1,17 +1,22 @@
-import { reactive } from "vue";
+import { ref } from "vue";
 import { defineStore } from "pinia";
+import fakeDbUser from "../fake-temp-db/user";
 
 export const useUserStore = defineStore("user", () => {
-  const user = reactive({
+  const user = ref({
     firstName: "",
     lastName: "",
     bio: "",
     email: "",
     gender: "",
   });
-  // const fullName = computed(() => `${user.firstName} ${user.lastName}`);
+
+  function initUser() {
+    return (user.value = { ...user.value, ...fakeDbUser });
+  }
 
   return {
     user,
+    initUser,
   };
 });
