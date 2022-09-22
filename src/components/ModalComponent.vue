@@ -1,7 +1,7 @@
 <template>
-  <div class="modal-comp fixed top-0 right-0 bottom-0 left-0 bg-gray-500/50">
+  <div class="modal-comp fixed top-0 right-0 bottom-0 left-0 bg-grey-500/50">
     <div
-      class="relative top-[25%] left-[25%] w-1/2 border-4 border-gray-100 bg-white p-4 shadow"
+      class="relative top-[25%] left-[25%] w-1/2 border-4 border-grey-100 bg-white p-4 shadow"
     >
       <button
         v-if="props.showCloseX"

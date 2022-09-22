@@ -4,7 +4,7 @@
     v-model="model"
     type="text"
     :placeholder="placeholder"
-    class="mr-2 border-2 border-gray-200 p-2"
+    class="mr-2 border-2 border-grey-200 p-2"
     :class="altStyles"
   >
   </textarea>

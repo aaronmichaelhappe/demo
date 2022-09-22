@@ -1,6 +1,6 @@
 <template>
   <button
-    class="flex items-center justify-center self-center rounded-full border-green-400 px-4 py-2 font-bold text-white"
+    class="flex items-center justify-center self-center rounded-full border-orange-400 px-4 py-2 font-bold text-white"
     :class="altStyles"
   >
     <slot></slot>
@@ -20,7 +20,7 @@ const props = defineProps({
 let altStyles = ref("bg-green-400");
 
 const styleLookup = {
-  outline: "text-green-400 border-2 border-green-400 ",
+  outline: "text-orange-400 border-2 border-orange-400 ",
 };
 
 if (props.type !== "") {

@@ -15,14 +15,14 @@
             v-model="newFlyerName"
             name="flyer-name"
             placeholder="Cool Name"
-            class="my-2 w-full border-2 border-gray-200 bg-white p-2"
+            class="my-2 w-full border-2 border-grey-200 bg-white p-2"
           />
         </div>
       </ModalComponent>
     </Teleport>
     <!-- // two layouts? -->
     <div class="grid h-[90vh] grid-cols-[1fr,1fr,3fr]">
-      <div class="bg-gray-800 p-4 pt-6">
+      <div class="bg-grey-800 p-4 pt-6">
         <div class="flex flex-col gap-y-4">
           <AmhButton :type="'outline'" class="w-[100%]">Search</AmhButton>
           <AmhButton @click="modalIsVisible = true" class="w-[100%]"
@@ -32,7 +32,7 @@
       </div>
       <!-- // switch these out when flyer chosen -->
       <!-- // change layout when switched? -->
-      <div class="bg-gray-100 p-4 pt-6">
+      <div class="bg-grey-100 p-4 pt-6">
         <FlyersSearchListPart :flyers="flyers"></FlyersSearchListPart>
       </div>
       <div class="p-4 pt-6">
@@ -61,9 +61,6 @@ let modalIsVisible = ref(false);
 function handleOKClicked() {
   store.createFlyer(newFlyerName);
   modalIsVisible = false;
-
-  // TODO:
-  // check name is filled
 
   router.push({
     name: "flyer-maker",
