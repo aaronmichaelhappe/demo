@@ -11,10 +11,12 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "firebase": "^9.10.0",
     "pinia": "^2.0.22",
     "register-service-worker": "^1.7.2",
     "vue": "^3.2.13",
-    "vue-router": "^4.0.3"
+    "vue-router": "^4.0.3",
+    "vuefire": "^2.2.5"
   },
   "devDependencies": {
     "@babel/core": "^7.19.1",
@@ -45,5 +47,17 @@
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.13",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
+  },
+  "importSort": {
+    ".js, .jsx, .vue, .es6, .es": {
+      "parser": "babylon",
+      "style": "eslint",
+      "options": {}
+    },
+    ".ts, .tsx": {
+      "parser": "typescript",
+      "style": "eslint",
+      "options": {}
+    }
   }
 }
