@@ -9,7 +9,7 @@
           name="book-outline"
           class="text-4xl text-amber-500"
         ></ion-icon>
-        <div v-show="isSignenIn">
+        <div v-show="isSignedIn">
           <nav>
             <router-link to="/">Home</router-link> |
             <router-link to="/profile">Create Profile</router-link> |
@@ -34,7 +34,7 @@ import { storeToRefs } from "pinia";
 import { useUserStore } from "@/stores/user";
 
 const auth = getAuth();
-const isSignenIn = ref(false);
+const isSignedIn = ref(false);
 const store = useUserStore();
 const { user } = storeToRefs(store);
 
@@ -45,14 +45,14 @@ function handleIsSignedIn() {
     displayName.value = auth.currentUser.displayName;
     return true;
   }
-  return (isSignenIn.value = false);
+  return (isSignedIn.value = false);
 }
 
 auth?.onAuthStateChanged(() => {
-  isSignenIn.value = handleIsSignedIn();
+  isSignedIn.value = handleIsSignedIn();
 });
 
 onMounted(() => {
-  isSignenIn.value = handleIsSignedIn();
+  isSignedIn.value = handleIsSignedIn();
 });
 </script>
