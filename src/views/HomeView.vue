@@ -1,6 +1,6 @@
 <template>
   <div class="home-view container m-2 mx-auto space-y-4 p-2">
-    <p @click="handleSignOut" class="cursor-pointer">SIGN OUT NOW!</p>
+    <!-- <p @click="handleSignOut" class="cursor-pointer">SIGN OUT NOW!</p> -->
     <div>
       <div class="flex">
         <ion-icon
@@ -27,8 +27,7 @@
         </p>
       </div>
     </div>
-    {{ isSignedIn }}
-    <div class="mt-8" data-testid="sign-in-buttons" v-if="!isSignedIn">
+    <div class="mt-8" data-testid="signed-off-wrapper" v-if="!isSignedIn">
       <AmhButton
         @click="handleGoogleSignIn"
         :type="'outline'"
@@ -53,7 +52,7 @@ import {
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
-  signOut,
+  // signOut,
 } from "firebase/auth";
 // eslint-disable-next-line no-unused-vars
 // import { getFirestore } from "firebase/firestore/lite";
@@ -93,17 +92,18 @@ function handleGoogleSignIn() {
       // const email = error.customData.email;
     });
 }
-function handleSignOut() {
-  signOut(auth)
-    .then(() => {
-      // Sign-out successful.
-      console.log(auth);
-      alert("you signed the fuck out");
-      isSignedIn.value = false;
-    })
-    .catch((error) => {
-      // An error happened.
-      console.log(error);
-    });
-}
+// function handleSignOut() {
+//   signOut(auth)
+//     .then(() => {
+//       // Sign-out successful.
+//       console.log(auth);
+//       alert("you signed the fuck out");
+//       isSignedIn.value = false;
+//     })
+//     .catch((error) => {
+//       // An error happened.
+//       console.log(error);
+//     });
+// }
+// handleSignOut();
 </script>

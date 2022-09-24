@@ -1,11 +1,10 @@
 import App from "@/App.vue";
-import HomeView from "@/views/HomeView.vue";
 import firebaseConfig from "../../firebase-config";
 import { getAuth } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { render } from "@testing-library/vue";
 import { setActivePinia, createPinia } from "pinia";
-
+// TODO: these are dependent on firebase. What if we switch FB out? Write wrappers for FB.
 jest.mock("firebase/auth", () => {
   return {
     getAuth: jest.fn(),
@@ -35,23 +34,37 @@ describe("App.vue", () => {
 
     expect(displayNameEl.textContent.length).toBeGreaterThan(0);
   });
-  it("sign-in-buttons wrapper, should not display when nav is also displaying.", () => {
-    const { queryByTestId } = render(App);
+  it("signed-in-wrapper 's, should display when signed IN.", () => {
+    const { queryAllByTestId } = render(App);
 
-    const displayNameEl = queryByTestId("display-name");
+    const wrapperSignedIn = queryAllByTestId("signed-in-wrapper");
+    // const signOffWrapperEl = queryAllByTestId("signed-off-wrapper");
     const mockedGetAuth = getAuth.mockReturnValueOnce({
       currentUser: { displayName: "Aaron Happe" },
     });
     const mockedCurrentUser = mockedGetAuth();
 
-    displayNameEl.textContent = mockedCurrentUser.currentUser.displayName;
+    if (mockedCurrentUser.currentUser.displayName.length) {
+      wrapperSignedIn.forEach((el) => {
+        expect(el).toBeTruthy();
+      });
+    }
+  });
 
-    const signInWrapperEl = queryByTestId("sign-in-buttons");
+  it("signed-off-wrapper 's, should NOT display when signed IN.", () => {
+    const { queryAllByTestId } = render(App);
 
-    if (displayNameEl.textContent.length > 0) {
-      expect(signInWrapperEl).toBeNull();
-    } else {
-      expect(signInWrapperEl).toBeTruthy();
+    const wrapperSignedOff = queryAllByTestId("signed-off-wrapper");
+    // const signOffWrapperEl = queryAllByTestId("signed-off-wrapper");
+    const mockedGetAuth = getAuth.mockReturnValueOnce({
+      currentUser: { displayName: "Aaron Happe" },
+    });
+    const mockedCurrentUser = mockedGetAuth();
+
+    if (mockedCurrentUser.currentUser.displayName.length) {
+      wrapperSignedOff.forEach((el) => {
+        expect(el).toBeTruthy();
+      });
     }
   });
 });
