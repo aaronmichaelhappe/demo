@@ -14,19 +14,26 @@
         Happe Books
       </h1>
       <div>
-        <h3 class="mt-4 mb-4 text-center text-xl italic leading-8 sm:text-2xl">
-          I actually work for a publishing company.
-        </h3>
-        <p class="text-md mt-4 mb-4 text-center italic leading-7">
-          But this is test portfolio project.
+        <p
+          class="mx-width-[26rem] text-md mt-4 mb-4 text-center italic leading-7"
+        >
+          But this is test portfolio project to demonstrate my skills from my
+          current and prior positions.
+        </p>
+        <p
+          class="mx-width-[26rem] text-md mt-4 mb-4 text-center italic leading-7"
+        >
+          This project was made with Vue 3, Pinia, Tailwind and more.
         </p>
       </div>
     </div>
-    <div class="mt-8">
+    {{ isSignedIn }}
+    <div class="mt-8" data-testid="sign-in-buttons" v-if="!isSignedIn">
       <AmhButton
         @click="handleGoogleSignIn"
         :type="'outline'"
         class="mx-auto max-w-[20rem]"
+        data-testid="google-sign-in"
         >Sign in with Google</AmhButton
       >
       <p class="mt-2 text-center text-sm italic">
@@ -39,30 +46,43 @@
 <script setup>
 import AmhButton from "@/elements/AmhButton.vue";
 import router from "../router";
+import { onMounted, ref } from "vue";
+import { storeToRefs } from "pinia";
+import { useUserStore } from "@/stores/user";
 import {
-  GoogleAuthProvider,
   getAuth,
+  GoogleAuthProvider,
   signInWithPopup,
   signOut,
 } from "firebase/auth";
-import { ref } from "vue";
+// eslint-disable-next-line no-unused-vars
 // import { getFirestore } from "firebase/firestore/lite";
 
 const auth = getAuth();
+const isSignedIn = ref(false);
 const provider = new GoogleAuthProvider();
-const user = ref(auth.currentUser);
+const store = useUserStore();
+const { displayName } = storeToRefs(store);
+
+function syncAuthedUserWuserStore(authedUser) {
+  displayName.value = authedUser.displayName;
+}
+onMounted(() => {
+  isSignedIn.value = auth?.currentUser ? true : false;
+});
 
 function handleGoogleSignIn() {
   signInWithPopup(auth, provider)
     .then((result) => {
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      user.value = result.user;
+      isSignedIn.value = true;
+      // eslint-disable-next-line no-unused-vars
+      // const credential = provider.credentialFromResult(result);
       // FYI -> returns a token. You can use it to access the Google API.
-      credential.accessToken;
-      console.log("code not running, please help");
+
       router.push({
         name: "dashboard",
       });
+      syncAuthedUserWuserStore(result.user);
     })
     .catch(() => {
       // TODO fix this
@@ -77,7 +97,9 @@ function handleSignOut() {
   signOut(auth)
     .then(() => {
       // Sign-out successful.
+      console.log(auth);
       alert("you signed the fuck out");
+      isSignedIn.value = false;
     })
     .catch((error) => {
       // An error happened.

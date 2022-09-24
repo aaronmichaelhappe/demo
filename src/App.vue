@@ -39,7 +39,7 @@ const store = useUserStore();
 const { user } = storeToRefs(store);
 
 const displayName = ref(user.displayName);
-
+// TODO maybe move this to a composable
 function handleIsSignedIn() {
   if (auth?.currentUser && auth?.currentUser.displayName) {
     displayName.value = auth.currentUser.displayName;
