@@ -1,73 +1,31 @@
-import App from "@/App.vue";
-import firebaseConfig from "../../firebase-config";
-import { getAuth } from "firebase/auth";
-import { initializeApp } from "firebase/app";
-import { render } from "@testing-library/vue";
-import { setActivePinia, createPinia } from "pinia";
-// TODO: these are dependent on firebase. What if we switch FB out? Write wrappers for FB.
-jest.mock("firebase/auth", () => {
-  return {
-    getAuth: jest.fn(),
-    onAuthStateChanged: jest.fn(),
-    GoogleAuthProvider: jest.fn(),
-  };
-});
+// import App from "@/App.vue";
+// // eslint-disable-next-line no-unused-vars
+// import firebaseConfig from "../../firebase-config";
+// import { initializeApp } from "firebase/app";
+// import { render, screen, fireEvent } from "@testing-library/vue";
+// import { setActivePinia, createPinia } from "pinia";
 
-describe("App.vue", () => {
-  beforeAll(() => {
-    initializeApp(firebaseConfig);
-  });
-  beforeEach(() => {
-    setActivePinia(createPinia());
-  });
-  it("display name, should have a length when user is authorized", () => {
-    const { getByTestId } = render(App);
+// describe("App.vue", () => {
+//   beforeAll(() => {
+//     initializeApp(firebaseConfig);
+//     setActivePinia(createPinia());
+//   });
 
-    const displayNameEl = getByTestId("display-name");
-    const mockedGetAuth = getAuth.mockReturnValueOnce({
-      currentUser: { displayName: "Aaron Happe" },
-    });
+//   it("should have a visible hamburger menu after menu button clicked open, the clicked closed again.", async () => {
+//     const { getByTestId } = render(App);
+//     const menuIconEl = getByTestId("menu-icon");
 
-    const mockedCurrentUser = mockedGetAuth();
+//     await fireEvent.click(menuIconEl);
 
-    displayNameEl.textContent = mockedCurrentUser.currentUser.displayName;
+//     const menuCloseButtonEl = getByTestId("menu-icon");
 
-    expect(displayNameEl.textContent.length).toBeGreaterThan(0);
-  });
-  it("signed-in-wrapper 's, should display when signed IN.", () => {
-    const { queryAllByTestId } = render(App);
+//     await screen.findByTestId("menu-close-button");
 
-    const wrapperSignedIn = queryAllByTestId("signed-in-wrapper");
-    // const signOffWrapperEl = queryAllByTestId("signed-off-wrapper");
-    const mockedGetAuth = getAuth.mockReturnValueOnce({
-      currentUser: { displayName: "Aaron Happe" },
-    });
-    const mockedCurrentUser = mockedGetAuth();
+//     await fireEvent.click(menuCloseButtonEl);
 
-    if (mockedCurrentUser.currentUser.displayName.length) {
-      wrapperSignedIn.forEach((el) => {
-        expect(el).toBeTruthy();
-      });
-    }
-  });
-
-  it("signed-off-wrapper 's, should NOT display when signed IN.", () => {
-    const { queryAllByTestId } = render(App);
-
-    const wrapperSignedOff = queryAllByTestId("signed-off-wrapper");
-    // const signOffWrapperEl = queryAllByTestId("signed-off-wrapper");
-    const mockedGetAuth = getAuth.mockReturnValueOnce({
-      currentUser: { displayName: "Aaron Happe" },
-    });
-    const mockedCurrentUser = mockedGetAuth();
-
-    if (mockedCurrentUser.currentUser.displayName.length) {
-      wrapperSignedOff.forEach((el) => {
-        expect(el).toBeTruthy();
-      });
-    }
-  });
-});
+//     expect(menuIconEl).not.toBeNull();
+//   });
+// });
 
 //   // Dispatch a native click event to our button element.
 //   await fireEvent.click(button);

@@ -6,6 +6,6 @@ router.beforeEach(async (to) => {
   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
 
   if (requiresAuth && !getAuth().currentUser) {
-    if (to.name !== "home") return { path: "/" };
+    if (to.name !== "login") return { path: "/login" };
   }
 });
