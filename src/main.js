@@ -1,18 +1,23 @@
 import "./registerServiceWorker";
 import "./styles/app.css";
+import { getFirebase } from "./firebase";
 import App from "./App.vue";
 import router from "./router";
 import "./router/before-route";
 import { createApp } from "vue";
 import { createPinia } from "pinia";
-import { getAuth } from "firebase/auth";
-import { initializeApp } from "firebase/app";
-import firebaseConfig from "./firebase-config.js";
+
 // import { getAnalytics } from "firebase/analytics";
 
-const firebase = initializeApp(firebaseConfig);
 const pinia = createPinia();
 
-getAuth(firebase);
+const firebaseServices = getFirebase();
 
-createApp(App).use(firebase).use(pinia).use(router).mount("#app");
+createApp(App)
+  .use(firebaseServices.firebaseApp)
+  .use(pinia)
+  .use(router)
+  .mount("#app");
+
+// docs
+// https://firebase.google.com/docs/reference/js/firestore_

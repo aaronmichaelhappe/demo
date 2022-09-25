@@ -23,6 +23,7 @@ const hasRunLoginCheck = ref(false);
 const isSignedIn = ref(false);
 
 function handleIsSignedIn() {
+  // TODO: auth by uid not displayName
   if (auth?.currentUser && auth?.currentUser.displayName) {
     return true;
   }
