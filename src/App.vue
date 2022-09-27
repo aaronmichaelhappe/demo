@@ -1,3 +1,4 @@
+//App.vue working tree
 <!-- eslint-disable no-unused-vars -->
 <template>
   <div>
@@ -9,7 +10,9 @@
           :isMenuOpen="isToggled"
           @custom-click="toggle"
         ></HeaderLoggedInPartial>
-        <HeaderLoggedOutPartial v-else></HeaderLoggedOutPartial>
+        <HeaderLoggedOutPartial
+          v-else-if="!isSignedIn"
+        ></HeaderLoggedOutPartial>
       </div>
     </header>
     <router-view />
@@ -30,8 +33,7 @@ const routeName = ref(route);
 const isToggled = ref(false);
 
 function handleIsSignedIn() {
-  // TODO: auth by uid not displayName
-  if (auth?.currentUser && auth?.currentUser.displayName) {
+  if (auth?.currentUser && auth?.currentUser.uid) {
     return true;
   }
   return (isSignedIn.value = false);
@@ -39,7 +41,6 @@ function handleIsSignedIn() {
 
 auth?.onAuthStateChanged(() => {
   isSignedIn.value = handleIsSignedIn();
-  hasRunLoginCheck.value = true;
 });
 
 function toggle() {
