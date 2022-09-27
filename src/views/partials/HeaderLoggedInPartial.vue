@@ -1,52 +1,67 @@
 <template>
-  <MenuMainComponent
-    v-show="isMenuOpen"
-    @click="isMenuOpen = false"
-  ></MenuMainComponent>
-  <div class="align-items grid grid-cols-3 justify-items-center gap-8">
-    <div class="justify-self-start">
-      <ion-icon
-        v-show="!isMenuOpen"
-        @click="handleOpenMenu"
-        data-testid="menu-icon"
-        name="menu-outline"
-        class="cursor-pointer justify-center text-4xl text-grey-500"
-      ></ion-icon>
-    </div>
-    <div>
-      <ion-icon name="book-outline" class="text-4xl text-amber-500"></ion-icon>
-    </div>
-    <div class="justify-self-end">
-      <p
-        @click="handleLogOut"
-        class="flex cursor-pointer items-center text-grey-300"
-      >
-        log out
-      </p>
+  <div>
+    <MenuMainComponent
+      v-show="isMenuOpen"
+      @custom-click-child="emitEvent"
+    ></MenuMainComponent>
+    <div class="align-items grid grid-cols-3 justify-items-center gap-8">
+      <div class="justify-self-start">
+        <ion-icon
+          v-show="!isMenuOpen"
+          @click="emitEvent"
+          data-testid="menu-icon"
+          name="menu-outline"
+          class="cursor-pointer justify-center text-4xl text-grey-500"
+        ></ion-icon>
+      </div>
+      <div>
+        <ion-icon
+          name="book-outline"
+          class="text-4xl text-amber-500"
+        ></ion-icon>
+      </div>
+      <div class="justify-self-end">
+        <p
+          @click="handleLogOut"
+          class="flex cursor-pointer items-center text-grey-300"
+        >
+          Log Out
+        </p>
+      </div>
     </div>
   </div>
 </template>
 <script setup>
 import { getAuth, signOut } from "firebase/auth";
-import { ref } from "vue";
+import { defineEmits, defineProps } from "vue";
+import router from "../../router";
 import MenuMainComponent from "@/components/MenuMainComponent.vue";
 
-const isMenuOpen = ref(false);
+// eslint-disable-next-line no-unused-vars
+const props = defineProps({
+  isMenuOpen: {
+    type: Boolean,
+  },
+});
+
+const emit = defineEmits(["custom-click"]);
+
 const auth = getAuth();
+
+function emitEvent() {
+  emit("custom-click");
+}
 
 function handleLogOut() {
   signOut(auth)
     .then(() => {
-      console.log(auth);
-      alert("you signed the fuck out");
+      router.push({
+        name: "login",
+      });
     })
     .catch((error) => {
       // An error happened.
       console.log(error);
     });
-}
-
-function handleOpenMenu() {
-  isMenuOpen.value = true;
 }
 </script>

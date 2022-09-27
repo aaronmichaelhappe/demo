@@ -25,10 +25,10 @@
 <script setup>
 import { defineEmits } from "vue";
 
-const emit = defineEmits(["click"]);
+const emit = defineEmits(["custom-click-child"]);
 
 function handleCloseMenu() {
-  emit("click");
+  emit("custom-click-child");
 }
 </script>
 
