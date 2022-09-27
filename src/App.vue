@@ -34,7 +34,7 @@ function handleIsSignedIn() {
   if (auth?.currentUser && auth?.currentUser.uid) {
     return true;
   }
-  return (isSignedIn.value = false);
+  return false;
 }
 
 auth?.onAuthStateChanged(() => {
