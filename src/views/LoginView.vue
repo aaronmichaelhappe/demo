@@ -18,36 +18,56 @@
 import AmhButton from "@/elements/AmhButton.vue";
 import AmhHeroH1 from "@/elements/AmhHeroH1.vue";
 import router from "../router";
+import { notNullOrNotUndefined } from "@/utils";
 import {
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
   // signOut,
 } from "firebase/auth";
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  query,
+  setDocs,
+  where,
+} from "firebase/firestore";
 
 const auth = getAuth();
+const firestore = getFirestore();
 const provider = new GoogleAuthProvider();
 
-// eslint-disable-next-line no-unused-vars
-function syncAuthedUserWuserStore(_authedUser) {
-  // displayName.value = authedUser.displayName;
+async function checkUserExistsInDb(currentUser) {
+  // check if user doc exists by doing a query...
+  const usersColl = collection(firestore, "users");
+  const messageQuery = query(usersColl, where("uid", "==", currentUser.uid));
+  const querySnapshot = await getDocs(messageQuery);
+
+  if (!notNullOrNotUndefined(querySnapshot)) {
+    setDocs(usersColl, {
+      uid: currentUser.uid,
+      authDisplayName: currentUser.displayName,
+    });
+    return false;
+  }
+  return true;
 }
 
 function handleGoogleSignIn() {
   signInWithPopup(auth, provider)
-    .then((result) => {
-      // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line no-unused-vars
+    .then(async (result) => {
       // const credential = provider.credentialFromResult(result);
       // FYI -> returns a token. You can use it to access the Google API.
+      await checkUserExistsInDb(result.user);
 
       router.push({
         name: "dashboard",
       });
-      syncAuthedUserWuserStore(result.user);
     })
     .catch(() => {
       // TODO fix this
-      // eslint-disable-next-line no-unused-vars
       // const errorCode = error.code;
       // console.log(errorCode);
       // const errorMessage = error.message;

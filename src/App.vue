@@ -30,8 +30,9 @@ const route = useRoute();
 const routeName = ref(route);
 const isToggled = ref(false);
 
-function handleIsSignedIn() {
-  if (auth?.currentUser && auth?.currentUser.uid) {
+async function handleIsSignedIn() {
+  const currentUser = auth?.currentUser;
+  if (currentUser && currentUser.uid) {
     return true;
   }
   return false;
