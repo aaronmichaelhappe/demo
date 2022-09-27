@@ -7,7 +7,7 @@
     <div class="col-start-3 flex cursor-pointer items-center text-grey-300">
       <!-- // TODO current page style indication -->
       <router-link to="/" class="mr-2">About</router-link> |
-      <router-link to="/login" class="ml-2">Log In Page</router-link>
+      <router-link to="/login" class="ml-2">Log In / Sign Up</router-link>
     </div>
   </div>
 </template>
