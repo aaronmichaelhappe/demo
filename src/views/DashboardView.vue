@@ -1,5 +1,5 @@
 <template>
-  <div class="about-view">
+  <div class="dashboard-view">
     <h1>Welcome to your damn dashboard.</h1>
   </div>
 </template>
