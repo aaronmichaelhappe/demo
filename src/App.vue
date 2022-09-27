@@ -1,5 +1,3 @@
-//App.vue working tree
-<!-- eslint-disable no-unused-vars -->
 <template>
   <div>
     <div id="pre-header-hook"></div>
