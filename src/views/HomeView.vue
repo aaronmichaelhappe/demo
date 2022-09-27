@@ -20,11 +20,6 @@
         >
           This project was made with Vue 3, Pinia, Tailwind and more.
         </p>
-        <router-link
-          class="flex justify-center pt-8 text-2xl font-bold text-amber-700 underline sm:text-4xl"
-          to="/login"
-          >Login</router-link
-        >
       </div>
     </div>
   </div>
