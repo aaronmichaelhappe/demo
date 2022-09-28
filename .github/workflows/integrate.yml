@@ -21,4 +21,4 @@ jobs:
       run: npm ci
 
     - name: Test
-      run: npm test:unit
+      run: vue-cli-service test:unit
