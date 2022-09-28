@@ -1,7 +1,6 @@
 name: Node Continuous Integration
 on: 
   pull_request:
-    branches: [master]
 
   jobs: 
     test_pull_request:
@@ -11,5 +10,5 @@ on:
         - uses: actions/setup-node@v1
           with:
             node-version: 18
-          - run: npm ci
-          - run: npm run test:unit
+        - run: npm ci
+        - run: npm run test:unit
