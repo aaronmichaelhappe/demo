@@ -1,7 +1,5 @@
 name: Node Continuous Integration
-on: 
-  pull_request:
-
+'on': pull_request
   jobs: 
     test_pull_request:
       runs-on: ubuntu-latest
