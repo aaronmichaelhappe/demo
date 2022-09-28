@@ -4,12 +4,27 @@
   </div>
 </template>
 <script setup>
-// import { collection, getFirestore, onSnapshot, orderBy, query } from "firebase/firestore";
+// import {
+//   collection,
+//   getFirestore,
+//   onSnapshot,
+//   orderBy,
+//   query,
+// } from "firebase/firestore";
 // const firestore = getFirestore();
 
 // function streamMessages({ caseId }) {
-//   const messagesColl = collection(firestore, "supportCases", caseId);
+//   const messagesColl = collection(
+//     firestore,
+//     "supportCases",
+//     caseId,
+//     "messages"
+//   );
 //   const messageQuery = query(messagesColl, orderBy("timestamp"));
-//   onSnapshot(message)
+//   onSnapshot(messageQuery, (snapshot) => {
+//     const messages = snapshot.docs.map((doc) => {
+//       const isDelivered = !doc.metadata.hasPendingWrites;
+//     });
+//   });
 // }
 </script>
