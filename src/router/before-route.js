@@ -1,11 +1,13 @@
 import router from "./index.js";
-import { getAuth } from "firebase/auth";
+import { getCurrentUser } from "../firebase";
 
-// router needs to use Auth. so thus outside of router.js
-router.beforeEach(async (to) => {
-  const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
+export function initBeforeEachRoute() {
+  // router needs to use Auth. so thus outside of router.js
+  router.beforeEach(async (to) => {
+    const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
 
-  if (requiresAuth && !getAuth().currentUser) {
-    if (to.name !== "login") return { path: "/login" };
-  }
-});
+    if (requiresAuth && !(await getCurrentUser())) {
+      if (to.name !== "login") return { path: "/login" };
+    }
+  });
+}

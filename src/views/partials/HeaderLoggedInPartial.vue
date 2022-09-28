@@ -41,6 +41,7 @@ import MenuMainComponent from "@/components/MenuMainComponent.vue";
 const props = defineProps({
   isMenuOpen: {
     type: Boolean,
+    default: false,
   },
 });
 

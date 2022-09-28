@@ -2,7 +2,7 @@
 // TODO: create an action to remove eslint-disable for entire files
 import { connectAuthEmulator, getAuth } from "firebase/auth";
 import { connectFirestoreEmulator, getFirestore } from "firebase/firestore";
-import { initializeApp, getApps } from "firebase/app";
+import { initializeApp, getApps, getApp } from "firebase/app";
 import firebaseConfig from "./firebase-config.js";
 
 function initializeServices() {
@@ -26,4 +26,16 @@ export function getFirebase() {
     connectToEmulators(services);
   }
   return services;
+}
+
+export function getCurrentUser() {
+  const app = getApp();
+  return (app.getCurrentUser = () => {
+    return new Promise((resolve, reject) => {
+      const unsubscribe = getAuth().onAuthStateChanged((user) => {
+        unsubscribe();
+        resolve(user);
+      }, reject);
+    });
+  });
 }

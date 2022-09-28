@@ -3,7 +3,7 @@ import "./styles/app.css";
 import { getFirebase } from "./firebase";
 import App from "./App.vue";
 import router from "./router";
-import "./router/before-route";
+import { initBeforeEachRoute } from "./router/before-route";
 import { createApp } from "vue";
 import { createPinia } from "pinia";
 
@@ -12,6 +12,7 @@ import { createPinia } from "pinia";
 const pinia = createPinia();
 
 const firebaseServices = getFirebase();
+initBeforeEachRoute();
 
 createApp(App)
   .use(firebaseServices.firebaseApp)

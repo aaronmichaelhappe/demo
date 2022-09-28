@@ -5,7 +5,7 @@
       <div class="container mx-auto">
         <HeaderLoggedInPartial
           v-if="isSignedIn"
-          :isMenuOpen="isToggled"
+          :isMenuOpen="isOpen"
           @custom-click="toggle"
         ></HeaderLoggedInPartial>
         <HeaderLoggedOutPartial
@@ -20,37 +20,45 @@
 <script setup>
 import HeaderLoggedInPartial from "@/views/partials/HeaderLoggedInPartial.vue";
 import HeaderLoggedOutPartial from "@/views/partials/HeaderLoggedOutPartial.vue";
-import { useRoute } from "vue-router";
-import { getAuth } from "firebase/auth";
 import { ref, onMounted, watch } from "vue";
+import { useRoute } from "vue-router";
+import { getCurrentUser } from "./firebase";
 
-const auth = getAuth();
+// const auth = getAuth();
 const isSignedIn = ref(false);
+const isOpen = ref(false);
 const route = useRoute();
 const routeName = ref(route);
-const isToggled = ref(false);
-
-async function handleIsSignedIn() {
-  const currentUser = auth?.currentUser;
-  if (currentUser && currentUser.uid) {
-    return true;
-  }
-  return false;
-}
-
-auth?.onAuthStateChanged(() => {
-  isSignedIn.value = handleIsSignedIn();
-});
 
 function toggle() {
-  isToggled.value = !isToggled.value;
+  isOpen.value = !isOpen.value;
+  console.log(isOpen.value);
 }
 
 watch(routeName.value, () => {
-  isToggled.value = !isToggled.value;
+  isOpen.value = false;
+  isSignedIn.value = callGetCurrentUser();
 });
 
+async function callGetCurrentUser() {
+  const getCurrentUserFunc = await getCurrentUser();
+  const value = await getCurrentUserFunc();
+  isSignedIn.value = !!value && true;
+}
+
 onMounted(() => {
-  isSignedIn.value = handleIsSignedIn();
+  isSignedIn.value = callGetCurrentUser();
+  isOpen.value = false;
 });
 </script>
+<style scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 1.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>
