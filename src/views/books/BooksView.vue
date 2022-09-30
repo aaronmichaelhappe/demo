@@ -11,6 +11,7 @@ import { containerMainLayout } from "../../../tailwind";
 import { ref } from "vue";
 import { useBooksStore } from "../../stores/books";
 
-const books = ref(store.fetchBooks());
 const store = useBooksStore();
+
+const books = ref(store.fetchBooks());
 </script>
