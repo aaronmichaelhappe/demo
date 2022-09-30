@@ -1,17 +1,17 @@
 <template>
   <div>
     <div id="pre-header-hook"></div>
-    <header class="bg-grey-700 py-2">
-      <div class="container mx-auto">
-        <HeaderLoggedInPartial
-          v-if="isSignedIn"
-          :isMenuOpen="isOpen"
-          @custom-click="toggle"
-        ></HeaderLoggedInPartial>
-        <HeaderLoggedOutPartial
-          v-else-if="!isSignedIn"
-        ></HeaderLoggedOutPartial>
-      </div>
+    <header class="space-y-4 bg-brown-600 px-4 py-2 sm:px-6">
+      <HeaderLoggedInPartial
+        v-if="isSignedIn"
+        :isMenuOpen="isOpen"
+        @custom-click="toggle"
+        class="container mx-auto"
+      ></HeaderLoggedInPartial>
+      <HeaderLoggedOutPartial
+        v-else-if="!isSignedIn"
+        class="container mx-auto"
+      ></HeaderLoggedOutPartial>
     </header>
     <router-view />
   </div>
@@ -22,17 +22,17 @@ import HeaderLoggedInPartial from "@/views/partials/HeaderLoggedInPartial.vue";
 import HeaderLoggedOutPartial from "@/views/partials/HeaderLoggedOutPartial.vue";
 import { ref, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
-import { getCurrentUser } from "./firebase";
+import { getApp } from "firebase/app";
 
 // const auth = getAuth();
-const isSignedIn = ref(false);
+const app = getApp();
 const isOpen = ref(false);
+const isSignedIn = ref(false);
 const route = useRoute();
 const routeName = ref(route);
 
 function toggle() {
   isOpen.value = !isOpen.value;
-  console.log(isOpen.value);
 }
 
 watch(routeName.value, () => {
@@ -41,8 +41,7 @@ watch(routeName.value, () => {
 });
 
 async function callGetCurrentUser() {
-  const getCurrentUserFunc = await getCurrentUser();
-  const value = await getCurrentUserFunc();
+  const value = await app.getCurrentUser();
   isSignedIn.value = !!value && true;
 }
 
@@ -51,14 +50,3 @@ onMounted(() => {
   isOpen.value = false;
 });
 </script>
-<style scoped>
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 1.5s ease;
-}
-
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-}
-</style>
