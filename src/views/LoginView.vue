@@ -1,23 +1,28 @@
 <template>
-  <div class="login-view center flex flex-col p-2 sm:p-12 md:p-16">
-    <AmhHeroH1></AmhHeroH1>
-    <h1 class="pt-8 text-center text-2xl font-bold text-amber-700 sm:text-4xl">
-      LOGIN PAGE
-    </h1>
-    <AmhButton
-      @click="handleGoogleSignIn"
-      :type="'outline'"
-      class="mx-auto mt-6 mb-2 max-w-[20rem]"
-      >Log in with Google</AmhButton
+  <div class="login-view" :class="containerMainLayout">
+    <h1
+      class="pt-8 pb-6 text-center text-2xl font-bold text-amber-700 sm:text-4xl"
     >
+      LOGIN
+    </h1>
+    <div class="pb-4">
+      <AmhButton
+        @click="handleGoogleSignIn"
+        :type="'outline'"
+        class="mx-auto max-w-[20rem]"
+        >Log in with Google</AmhButton
+      >
+    </div>
 
-    <p class="mt-2 text-center text-sm italic">More sign in methods to come.</p>
+    <p class="pb-8 text-center text-sm italic">More sign in methods to come.</p>
+    <TinyNavPartial></TinyNavPartial>
   </div>
 </template>
 <script setup>
 import AmhButton from "@/elements/AmhButton.vue";
-import AmhHeroH1 from "@/elements/AmhHeroH1.vue";
+import TinyNavPartial from "@/views/partials/TinyNavPartial.vue";
 import router from "../router";
+import { containerMainLayout } from "../../tailwind";
 import { notNullOrNotUndefined } from "@/utils";
 import {
   getAuth,

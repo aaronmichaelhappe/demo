@@ -5,7 +5,7 @@
       <li
         v-for="flyer in flyers"
         :key="flyer.id"
-        class="h-[14rem] bg-white p-2 text-xs"
+        class="h-[14rem] bg-brown-25 p-2 text-xs"
       >
         {{ flyer.title }}
       </li>

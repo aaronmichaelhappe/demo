@@ -1,4 +1,5 @@
 <template>
+  <!-- // TODO: think about els being web components -->
   <button
     class="flex items-center justify-center self-center rounded-full border-orange-400 px-4 py-2 font-bold text-white"
     :class="altStyles"

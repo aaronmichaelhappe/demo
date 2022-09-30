@@ -1,5 +1,5 @@
 <template>
-  <div class="profile-view container mx-auto">
+  <div class="profile-view" :class="containerMainLayout">
     <h1>This is an profile page.</h1>
     <form class="grid grid-cols-2 gap-x-2 gap-y-4">
       <div>
@@ -49,29 +49,26 @@
 </template>
 
 <script setup>
-import { useUserStore } from "@/stores/user";
-import { storeToRefs } from "pinia";
-
-import AmhInput from "@/elements/AmhInput.vue";
 import AmhButton from "@/elements/AmhButton.vue";
-import AmhTextarea from "@/elements/AmhTextarea.vue";
+import AmhInput from "@/elements/AmhInput.vue";
 import AmhRadios from "@/elements/AmhRadios.vue";
+import AmhTextarea from "@/elements/AmhTextarea.vue";
+import { containerMainLayout } from "../../tailwind";
+import { storeToRefs } from "pinia";
+import { useUserStore } from "@/stores/user";
 
 // eslint-disable-next-line no-unused-vars
 const store = useUserStore();
 
 const { user } = storeToRefs(store);
 function onInput(value, from) {
-  const lookUp = new Map();
-  lookUp.set("firstName", () => (user.firstName = value));
+  const lookUp = {
+    firstName: () => (user.firstName = value),
+    lastName: () => (user.lastName = value),
+  };
+
   lookUp.get(from)();
 }
 
-function handleSubmit() {
-  localStorage.setItem("profileBio", user.bio);
-  localStorage.setItem("profileEmail", user.email);
-  localStorage.setItem("profileFirstName", user.firstName);
-  localStorage.setItem("profileGender", user.gender);
-  localStorage.setItem("profileLastName", user.lastName);
-}
+function handleSubmit() {}
 </script>

@@ -1,18 +1,17 @@
 <template>
-  <!-- <div class="flyers-view container m-2 space-y-2 p-2"> -->
-  <p>asdf</p>
-  <div class="books-view container">
+  <div class="books-view container" :class="containerMainLayout">
     <p data-testid="book" v-for="book in books" :key="book.id">
-      {{ book.title }}asdf
+      {{ book.title }}
     </p>
   </div>
 </template>
 
 <script setup>
+import { containerMainLayout } from "../../../tailwind";
 import { ref } from "vue";
 import { useBooksStore } from "../../stores/books";
-// import { storeToRefs } from "pinia";
 
 const store = useBooksStore();
+
 const books = ref(store.fetchBooks());
 </script>

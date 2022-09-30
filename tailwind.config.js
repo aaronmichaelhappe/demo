@@ -245,6 +245,7 @@ const colors = {
   "deep-orange-400-accent": "#ff3d00",
   "deep-orange-700-accent": "#dd2c00",
   brown: "#795548",
+  "brown-25": "#fbf9f8",
   "brown-50": "#efebe9",
   "brown-100": "#d7ccc8",
   "brown-200": "#bcaaa4",
