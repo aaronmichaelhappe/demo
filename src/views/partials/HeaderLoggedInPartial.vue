@@ -50,11 +50,10 @@
 </template>
 <script setup>
 import { getAuth, signOut } from "firebase/auth";
-import { defineEmits, defineProps } from "vue";
 import router from "../../router";
 import MenuMainComponent from "@/components/MenuMainComponent.vue";
 
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line no-unused-vars, no-undef
 const props = defineProps({
   isMenuOpen: {
     type: Boolean,
@@ -62,6 +61,7 @@ const props = defineProps({
   },
 });
 
+// eslint-disable-next-line no-undef
 const emit = defineEmits(["custom-click"]);
 
 const auth = getAuth();

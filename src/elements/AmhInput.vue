@@ -13,10 +13,11 @@
 </template>
 
 <script setup>
-import { defineEmits, defineProps, ref } from "vue";
+import { ref } from "vue";
 
+// eslint-disable-next-line no-undef
 const emit = defineEmits(["amhInput"]);
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line no-unused-vars, no-undef
 const props = defineProps({
   model: {
     required: true,

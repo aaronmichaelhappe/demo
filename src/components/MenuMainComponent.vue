@@ -26,10 +26,9 @@
 </template>
 
 <script setup>
-import { defineEmits, defineProps } from "vue";
-
+// eslint-disable-next-line no-undef
 const emit = defineEmits(["custom-click-child"]);
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line no-unused-vars, no-undef
 const props = defineProps({
   isMenuOpen: {
     type: Boolean,

@@ -42,9 +42,9 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits } from "vue";
 import AmhButton from "@/elements/AmhButton.vue";
 
+// eslint-disable-next-line no-undef
 const props = defineProps({
   showCloseX: {
     type: Boolean,
@@ -63,5 +63,6 @@ const props = defineProps({
   },
 });
 
+// eslint-disable-next-line no-undef
 const emit = defineEmits(["okModal", "closeModal"]);
 </script>
