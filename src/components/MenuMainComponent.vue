@@ -11,16 +11,24 @@
       <transition name="fade">
         <ion-icon
           name="close"
-          class="absolute top-0 text-4xl text-grey-500"
+          class="absolute top-0 text-4xl text-light-green-200"
           v-show="isMenuOpen"
         ></ion-icon>
       </transition>
     </button>
-    <nav class="flex flex-col">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/profile">Create Profile</router-link> |
-      <router-link to="/books">Books</router-link> |
+
+    <nav
+      class="flex h-full flex-col bg-green-800 pl-4 pt-4 font-bold leading-8 text-white"
+    >
+      <p class="bg-none pt-4 text-2xl leading-8 text-lime-200">Main Menu</p>
+      <router-link to="/books" class="cursor-pointer">Books</router-link>
       <router-link to="/flyers">Flyers</router-link>
+      <router-link to="/books">Filler Text Link</router-link>
+      <router-link to="/books">Filler</router-link>
+      <router-link to="/books">Lorum Ipsum</router-link>
+      <router-link to="/books">Inpsum Lorum</router-link>
+      <router-link to="/books">Links can go</router-link>
+      <router-link to="/books">Here</router-link>
     </nav>
   </div>
 </template>
