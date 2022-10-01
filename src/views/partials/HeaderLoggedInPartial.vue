@@ -89,42 +89,45 @@ function handleLogOut() {
   top: 0;
   bottom: 0;
   left: 0;
-  width: 25rem;
+  width: 30%;
 }
+
 .slide-enter-active,
 .slide-leave-active {
-  transition: all 0.6s ease-in-out;
+  transition: all 0.6s ease;
 }
 
 .slide-enter-to {
   position: absolute;
-  right: 25rem;
-  width: 25rem;
+  right: 30%;
+  width: 30%;
   opacity: 1;
 }
 
 .slide-enter-from {
   position: absolute;
-  left: -15rem;
-  width: 5rem;
+  left: -20vw;
+  right: 120vw;
   opacity: 0;
+  width: 0;
 }
 
 .slide-leave-to {
   position: absolute;
-  left: -15rem;
-  width: 5rem;
-  opacity: 1;
+  left: -20vw;
+  right: 120vw;
+  width: 0;
 }
+
 .slide-leave-from {
   position: absolute;
-  right: 25rem;
-  width: 25rem;
+  width: 30%;
   opacity: 0;
 }
+
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.4s ease;
+  transition: all 0.4s ease;
 }
 
 .fade-enter-from,
@@ -142,7 +145,31 @@ function handleLogOut() {
   opacity: 0;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
+  .main-menu-component {
+    width: 45%;
+  }
+  .slide-enter-to {
+    right: 45%;
+    width: 45%;
+  }
+  .slide-enter-from {
+    position: absolute;
+    left: -80vw;
+    right: 180vw;
+  }
+  .slide-leave-to {
+    position: absolute;
+    left: -80vw;
+    right: 180vw;
+  }
+  .slide-leave-from {
+    right: 45%;
+    width: 45%;
+  }
+}
+
+@media (max-width: 500px) {
   .main-menu-component {
     width: 100%;
   }
@@ -150,22 +177,19 @@ function handleLogOut() {
     right: 100%;
     width: 100%;
   }
+  .slide-enter-from {
+    position: absolute;
+    left: -120vw;
+    right: 220vw;
+  }
+  .slide-leave-to {
+    position: absolute;
+    left: -120vw;
+    right: 220vw;
+  }
   .slide-leave-from {
     right: 100%;
     width: 100%;
-  }
-  .slide-enter-from {
-    left: -25vw;
-    right: 2rem;
-    width: 0;
-    opacity: 0;
-  }
-
-  .slide-leave-to {
-    left: -25vw;
-    right: 2rem;
-    width: 0;
-    opacity: 1;
   }
 }
 </style>
