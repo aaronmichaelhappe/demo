@@ -4,7 +4,7 @@
       <div class="flex">
         <ion-icon
           name="book-outline"
-          class="mx-auto text-[5rem] text-amber-800 sm:text-[6rem] sm:text-[10rem] md:text-[8rem]"
+          class="mx-auto text-[5rem] sm:text-[6rem] sm:text-[10rem] md:text-[8rem]"
         ></ion-icon>
       </div>
       <AmhHeroH1 class="pb-4"></AmhHeroH1>

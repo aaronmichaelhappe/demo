@@ -3,7 +3,7 @@
     <transition name="fade2">
       <div v-show="isMenuOpen">
         <div
-          class="absolute top-0 right-0 bottom-0 left-0 z-10 bg-brown-900 opacity-40"
+          class="bg-brown-900 absolute right-0 bottom-0 left-0 top-0 z-10 opacity-40"
           :class="[!isMenuOpen && 'static w-0']"
         ></div>
       </div>
@@ -32,15 +32,12 @@
         </transition>
       </div>
       <div>
-        <ion-icon
-          name="book-outline"
-          class="text-4xl text-amber-800"
-        ></ion-icon>
+        <ion-icon name="book-outline" class="text-4xl"></ion-icon>
       </div>
       <div class="justify-self-end">
         <p
           @click="handleLogOut"
-          class="sm:text-md flex cursor-pointer items-center text-sm text-grey-300"
+          class="sm:text-md text-grey-300 flex cursor-pointer items-center text-sm"
         >
           Log Out
         </p>
@@ -149,20 +146,24 @@ function handleLogOut() {
   .main-menu-component {
     width: 45%;
   }
+
   .slide-enter-to {
     right: 45%;
     width: 45%;
   }
+
   .slide-enter-from {
     position: absolute;
     left: -80vw;
     right: 180vw;
   }
+
   .slide-leave-to {
     position: absolute;
     left: -80vw;
     right: 180vw;
   }
+
   .slide-leave-from {
     right: 45%;
     width: 45%;
@@ -173,20 +174,24 @@ function handleLogOut() {
   .main-menu-component {
     width: 100%;
   }
+
   .slide-enter-to {
     right: 100%;
     width: 100%;
   }
+
   .slide-enter-from {
     position: absolute;
     left: -120vw;
     right: 220vw;
   }
+
   .slide-leave-to {
     position: absolute;
     left: -120vw;
     right: 220vw;
   }
+
   .slide-leave-from {
     right: 100%;
     width: 100%;

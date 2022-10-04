@@ -1,10 +1,6 @@
 <template>
   <div class="login-view" :class="containerMainLayout">
-    <h1
-      class="pt-8 pb-6 text-center text-2xl font-bold text-amber-700 sm:text-4xl"
-    >
-      LOGIN
-    </h1>
+    <h1 class="pt-8 pb-6 text-center text-2xl font-bold sm:text-4xl">LOGIN</h1>
     <div class="pb-4">
       <AmhButton
         @click="handleGoogleSignIn"
